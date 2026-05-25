@@ -27,11 +27,11 @@
           "minecraft:raw_gold"
         ]
       },
-      "minecraft:behavior.follow_owner": {
+        "minecraft:behavior.follow_owner": {
         "priority": 1,
-        "speed_multiplier": 1.5,
-        "start_distance": 3,
-        "stop_distance": 1,
+        "speed_multiplier": 1.1,
+        "start_distance": 5,
+        "stop_distance": 3,
         "max_distance": 15
       },
       "minecraft:behavior.random_stroll": {
@@ -46,7 +46,36 @@
       "minecraft:behavior.random_look_around": {
         "priority": 7
       },
-      "minecraft:jump.static": {}
+      "minecraft:jump.static": {},
+      "minecraft:inventory": {
+        "inventory_size": 27,
+        "container_type": "inventory",
+        "private": false
+      },
+      "minecraft:interact": {
+        "interactions": [
+          {
+            "on_interact": {
+              "filters": {
+                "all_of": [
+                  {
+                    "test": "is_sneaking",
+                    "subject": "other",
+                    "value": true
+                  },
+                  {
+                    "test": "is_owner",
+                    "subject": "other",
+                    "value": true
+                  }
+                ]
+              }
+            },
+            "use_item": false,
+            "interact_text": "Open Backpack"
+          }
+        ]
+      }
     }
   }
 }
