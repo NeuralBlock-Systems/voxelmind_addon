@@ -1,0 +1,37 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "gcompanion:goblin",
+      "materials": {
+        "default": "skeleton"
+      },
+      "textures": {
+        "default": "textures/entity/goblin"
+      },
+      "geometry": {
+        "default": "geometry.goblin"
+      },
+      "animations": {
+        "walk": "animation.goblin.move",
+        "static": "animation.goblin.static",
+        "eat": "animation.goblin.eat_apple",
+        "fall_down": "animation.goblin.fall_down",
+        "fall_down_2": "animation.goblin.fall_down_2",
+        "controller": "controller.animation.goblin"
+      },
+      "scripts": {
+        "animate": [
+          "controller"
+        ]
+      },
+      "render_controllers": [
+        "controller.render.default"
+      ],
+      "spawn_egg": {
+        "base_color": "#59a257",
+        "overlay_color": "#2f512e"
+      }
+    }
+  }
+}

@@ -1,0 +1,73 @@
+{
+  "format_version": "1.10.0",
+  "animation_controllers": {
+    "controller.animation.goblin": {
+      "initial_state": "default",
+      "states": {
+        "default": {
+          "animations": [
+            { "static": "q.ground_speed==0&&(q.is_on_ground||q.is_in_water)" }
+          ],
+          "transitions": [
+            {
+              "walk": "q.ground_speed>0&&!q.is_sheared&&!q.is_illager_captain&&!q.is_ignited"
+            },
+            { "eat": "q.is_sheared" },
+            { "fall_down": "q.is_illager_captain" },
+            { "fall_down_2": "q.is_ignited" }
+          ]
+        },
+        "walk": {
+          "animations": [{ "walk": "!q.is_levitating" }],
+          "transitions": [
+            {
+              "default": "q.ground_speed==0&&!q.is_sheared&&!q.is_illager_captain&&!q.is_ignited"
+            },
+            { "eat": "q.is_sheared" },
+            { "fall_down": "q.is_illager_captain" },
+            { "fall_down_2": "q.is_ignited" }
+          ]
+        },
+        "eat": {
+          "animations": ["eat"],
+          "transitions": [
+            {
+              "default": "q.ground_speed==0&&!q.is_sheared&&!q.is_illager_captain&&!q.is_ignited&&q.all_animations_finished"
+            },
+            {
+              "walk": "q.ground_speed>0&&!q.is_sheared&&!q.is_illager_captain&&!q.is_ignited&&q.all_animations_finished"
+            },
+            { "fall_down": "q.is_illager_captain&&!q.is_ignited" },
+            { "fall_down_2": "q.is_ignited&&!q.is_illager_captain" }
+          ]
+        },
+        "fall_down": {
+          "animations": ["fall_down"],
+          "transitions": [
+            {
+              "default": "q.ground_speed==0&&!q.is_sheared&&!q.is_illager_captain&&!q.is_ignited&&q.all_animations_finished"
+            },
+            {
+              "walk": "q.ground_speed>0&&!q.is_sheared&&!q.is_illager_captain&&!q.is_ignited&&q.all_animations_finished"
+            },
+            { "eat": "q.is_sheared&&!q.is_ignited&&!q.is_illager_captain" },
+            { "fall_down_2": "q.is_ignited&&!q.is_illager_captain" }
+          ]
+        },
+        "fall_down_2": {
+          "animations": ["fall_down_2"],
+          "transitions": [
+            {
+              "default": "q.ground_speed==0&&!q.is_sheared&&!q.is_illager_captain&&!q.is_ignited&&q.all_animations_finished"
+            },
+            {
+              "walk": "q.ground_speed>0&&!q.is_sheared&&!q.is_illager_captain&&!q.is_ignited&&q.all_animations_finished"
+            },
+            { "eat": "q.is_sheared&&!q.is_ignited&&!q.is_illager_captain" },
+            { "fall_down": "q.is_illager_captain&&!q.is_ignited" }
+          ]
+        }
+      }
+    }
+  }
+}
