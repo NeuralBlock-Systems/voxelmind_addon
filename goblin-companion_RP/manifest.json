@@ -1,0 +1,17 @@
+{
+  "format_version": 2,
+  "header": {
+    "name": "Goblin Companion RP",
+    "description": "Goblin Resource Packs",
+    "uuid": "89cf67d1-28e9-4c19-b069-46e7d4f86aa1",
+    "version": [1, 0, 0],
+    "min_engine_version": [1, 20, 80]
+  },
+  "modules": [
+    {
+      "type": "resources",
+      "uuid": "9b8e60bd-57d5-4ee8-b01a-ad79fcb01c42",
+      "version": [1, 0, 0]
+    }
+  ]
+}

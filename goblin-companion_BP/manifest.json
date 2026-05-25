@@ -1,0 +1,38 @@
+{
+  "format_version": 2,
+  "header": {
+    "name": "Goblin Companion BP",
+    "description": "Goblin Behavior Packs and Scripts",
+    "uuid": "78119a85-d0bb-42c5-aedb-2c86bd2013a5",
+    "version": [1, 0, 0],
+    "min_engine_version": [1, 20, 80]
+  },
+  "modules": [
+    {
+      "type": "data",
+      "uuid": "a1be62da-576e-4e3d-8ecd-198919e34a02",
+      "version": [1, 0, 0]
+    },
+    {
+      "type": "script",
+      "language": "javascript",
+      "uuid": "ba22e784-c6ba-46b4-a639-47611339517a",
+      "version": [1, 0, 0],
+      "entry": "scripts/main.js"
+    }
+  ],
+  "dependencies": [
+    {
+      "module_name": "@minecraft/server",
+      "version": "1.10.0-beta"
+    },
+    {
+      "module_name": "@minecraft/server-ui",
+      "version": "1.2.0-beta"
+    },
+    {
+      "uuid": "176f7fc1-67c8-4fc3-bed5-8673d54b320c",
+      "version": [1, 0, 0]
+    }
+  ]
+}
