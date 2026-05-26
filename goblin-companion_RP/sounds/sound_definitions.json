@@ -1,0 +1,20 @@
+{
+  "format_version": "1.14.0",
+  "sound_definitions": {
+    "goblin_trader_idle": {
+      "category": "hostile",
+      "sounds": [
+        { "name": "sounds/goblin_trader/idle_grunt1", "volume": 5 },
+        { "name": "sounds/goblin_trader/idle_grunt2", "volume": 5 },
+        { "name": "sounds/goblin_trader/idle_grunt3", "volume": 5 }
+      ]
+    },
+    "goblin_trader_annoyed": {
+      "category": "hostile",
+      "sounds": [
+        { "name": "sounds/goblin_trader/annoyed_grunt1", "volume": 5 },
+        { "name": "sounds/goblin_trader/annoyed_grunt2", "volume": 5 }
+      ]
+    }
+  }
+}
