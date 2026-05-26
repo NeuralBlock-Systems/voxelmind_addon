@@ -7,36 +7,96 @@
       "is_summonable": true,
       "is_experimental": false
     },
+    "component_groups": {
+      "gcompanion:tamed_base": {
+        "minecraft:inventory": {
+          "inventory_size": 5,
+          "container_type": "hopper",
+          "private": false
+        },
+        "minecraft:ambient_sound_interval": {
+          "value": 4.0,
+          "range": 8.0,
+          "event_name": "goblin_trader_idle"
+        }
+      },
+      "gcompanion:state_follow": {
+        "minecraft:behavior.follow_owner": {
+          "priority": 1,
+          "speed_multiplier": 1.1,
+          "start_distance": 5,
+          "stop_distance": 3,
+          "max_distance": 15
+        },
+        "minecraft:behavior.random_stroll": {
+          "priority": 5,
+          "speed_multiplier": 1.0
+        }
+      },
+      "gcompanion:state_sit": {
+        "minecraft:behavior.stay_while_sitting": {
+          "priority": 1
+        }
+      },
+      "gcompanion:state_go_to_ore": {
+        "minecraft:behavior.follow_mob": {
+          "priority": 1,
+          "speed_multiplier": 1.2,
+          "stop_distance": 1.5,
+          "search_range": 64,
+          "entity_types": [
+            {
+              "filters": {
+                "test": "has_component",
+                "operator": "==",
+                "value": "gcompanion:dummy"
+              },
+              "max_dist": 64
+            }
+          ]
+        }
+      }
+    },
+    "events": {
+      "gcompanion:on_tamed": {
+        "add": { "component_groups": [ "gcompanion:state_follow", "gcompanion:tamed_base" ] }
+      },
+      "gcompanion:command_sit": {
+        "remove": { "component_groups": [ "gcompanion:state_follow", "gcompanion:state_go_to_ore" ] },
+        "add": { "component_groups": [ "gcompanion:state_sit" ] }
+      },
+      "gcompanion:command_follow": {
+        "remove": { "component_groups": [ "gcompanion:state_sit", "gcompanion:state_go_to_ore" ] },
+        "add": { "component_groups": [ "gcompanion:state_follow" ] }
+      },
+      "gcompanion:command_go_to_ore": {
+        "remove": { "component_groups": [ "gcompanion:state_sit", "gcompanion:state_follow" ] },
+        "add": { "component_groups": [ "gcompanion:state_go_to_ore" ] }
+      }
+    },
     "components": {
       "minecraft:type_family": {
-        "family": ["goblin", "mob", "parrot_tame"]
+        "family": ["goblin", "mob"]
       },
       "minecraft:physics": {},
-      "minecraft:movement": {
-        "value": 0.25
-      },
+      "minecraft:movement": { "value": 0.25 },
       "minecraft:movement.basic": {},
       "minecraft:navigation.walk": {
         "is_amphibious": false,
         "avoid_water": true
       },
+      "minecraft:jump.static": {},
+      "minecraft:follow_range": {
+        "value": 64,
+        "max": 64
+      },
       "minecraft:tameable": {
         "probability": 0.5,
-        "tame_items": [
-          "minecraft:raw_iron",
-          "minecraft:raw_gold"
-        ]
-      },
-        "minecraft:behavior.follow_owner": {
-        "priority": 1,
-        "speed_multiplier": 1.1,
-        "start_distance": 5,
-        "stop_distance": 3,
-        "max_distance": 15
-      },
-      "minecraft:behavior.random_stroll": {
-        "priority": 5,
-        "speed_multiplier": 1.0
+        "tame_items": [ "minecraft:raw_iron", "minecraft:raw_gold" ],
+        "tame_event": {
+          "event": "gcompanion:on_tamed",
+          "target": "self"
+        }
       },
       "minecraft:behavior.look_at_player": {
         "priority": 6,
@@ -46,35 +106,9 @@
       "minecraft:behavior.random_look_around": {
         "priority": 7
       },
-      "minecraft:jump.static": {},
-      "minecraft:inventory": {
-        "inventory_size": 27,
-        "container_type": "inventory",
-        "private": false
-      },
-      "minecraft:interact": {
-        "interactions": [
-          {
-            "on_interact": {
-              "filters": {
-                "all_of": [
-                  {
-                    "test": "is_sneaking",
-                    "subject": "other",
-                    "value": true
-                  },
-                  {
-                    "test": "is_owner",
-                    "subject": "other",
-                    "value": true
-                  }
-                ]
-              }
-            },
-            "use_item": false,
-            "interact_text": "Open Backpack"
-          }
-        ]
+      "minecraft:collision_box": {
+        "width": 0.6,
+        "height": 0.95
       }
     }
   }
